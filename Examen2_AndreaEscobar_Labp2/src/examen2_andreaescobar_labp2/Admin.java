@@ -6,6 +6,7 @@
 package examen2_andreaescobar_labp2;
 
 import java.io.EOFException;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -17,16 +18,55 @@ import java.util.ArrayList;
  * @author andre
  */
 public class Admin {
+    private ArrayList<Usuarios> users;
+    private ArrayList<Canciones> songs;
+    private File archivo = null;
+
+    public Admin() {
+    }
+
+    public ArrayList<Usuarios> getUsers() {
+        return users;
+    }
+
+    public void setUsers(ArrayList<Usuarios> users) {
+        this.users = users;
+    }
+
+    public ArrayList<Canciones> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(ArrayList<Canciones> songs) {
+        this.songs = songs;
+    }
+
+    public File getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(File archivo) {
+        this.archivo = archivo;
+    }
+    
+    public void setUser(Usuarios u){
+        this.users.add(u);
+    }
+    
+    public Admin(String path) {
+        archivo = new File(path);
+    }
+    
     public void cargarArchivoBinario() {
         try {
-            events = new ArrayList();
-            EventoTarea temp;
+            users = new ArrayList();
+            Usuarios temp;
             if (archivo.exists()) {
                 FileInputStream entrada = new FileInputStream(archivo);
                 ObjectInputStream objeto = new ObjectInputStream(entrada);
                 try {
-                    while ((temp = (EventoTarea) objeto.readObject()) != null) {
-                        events.add(temp);
+                    while ((temp = (Usuarios) objeto.readObject()) != null) {
+                        users.add(temp);
                     }
                 } catch (EOFException ex) {
                 }
@@ -44,8 +84,8 @@ public class Admin {
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            for (EventoTarea e : events) {
-                bw.writeObject(e);
+            for (Usuarios u : users) {
+                bw.writeObject(u);
             }
             bw.flush();
         } catch (Exception e) {
