@@ -5,19 +5,22 @@
  */
 package examen2_andreaescobar_labp2;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author andre
  */
-public class Usuarios {
+public class Usuarios implements Serializable {
+
     private String username;
     private String nombre;
     private String edad;
     private String password;
     private ArrayList<Playlist> playlist;
     private ArrayList<Canciones> fav;
+    private static final long SerialVersionUID = 777L;
 
     public Usuarios(String username, String nombre, String edad, String password, ArrayList<Playlist> playlist, ArrayList<Canciones> fav) {
         this.username = username;
@@ -78,7 +81,7 @@ public class Usuarios {
 
     @Override
     public String toString() {
-        return "username=" + username + ", nombre=" + nombre;
+        return "Username: " + username + ", Nombre: " + nombre;
     }
-    
+
 }

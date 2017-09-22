@@ -6,6 +6,8 @@
 package examen2_andreaescobar_labp2;
 
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -75,6 +77,12 @@ public class Musica extends javax.swing.JFrame {
         tfnombreCreaere = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -300,6 +308,11 @@ public class Musica extends javax.swing.JFrame {
         jLabel10.setText("Nombre");
 
         jButton1.setText("Log in");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Crear Cuenta");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -404,11 +417,47 @@ public class Musica extends javax.swing.JFrame {
         // TODO add your handling code here:
         Admin a = new Admin("./musica.admin");
         a.cargarArchivoBinario();
-        ArrayList<Playlist> pl=null;
+        ArrayList<Playlist> pl = null;
         ArrayList<Canciones> fav = null;
         a.setUser(new Usuarios(tf_usernameCREAr.getText(), tfnombreCreaere.getText(), tf_edad.getText(), pf_crear.getText(), pl, fav));
         a.escribirArchivoBinario();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Admin a = new Admin("./musica.admin");
+        a.cargarArchivoBinario();
+        ArrayList<Usuarios> users = a.getUsers();
+        String username = tf_usernamelogin.getText();
+        String pc = pf_login.getText();
+        boolean u = false;
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUsername().equals(username)) {
+                if (users.get(i).getPassword().equals(pc)) {
+                    u = true;
+                }
+            }
+        }
+        if (u == true) {
+            jDialog1.pack();
+            jDialog1.setModal(true);
+            jDialog1.setLocationRelativeTo(this);
+            jDialog1.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Lo siento usuario no existente");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        Admin a = new Admin("./musica.admin");
+        a.cargarArchivoBinario();
+        ArrayList<Usuarios> users = a.getUsers();
+        
+        DefaultListModel lista = new DefaultListModel();
+        for (int i = 0; i < users.size(); i++) {
+            lista.addElement(users.get(i));
+        }
+        jList1.setModel(lista);
+    }//GEN-LAST:event_jTabbedPane1StateChanged
 
     /**
      * @param args the command line arguments
