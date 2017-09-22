@@ -9,6 +9,6 @@ package examen2_andreaescobar_labp2;
  *
  * @author andre
  */
-public class Favoritos {
+public class Album {
     
 }
