@@ -9,13 +9,6 @@ package examen2_andreaescobar_labp2;
  *
  * @author andre
  */
-public class Examen2_AndreaEscobar_Labp2 {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class Admin {
     
 }
