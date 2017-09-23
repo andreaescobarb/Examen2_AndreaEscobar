@@ -17,20 +17,28 @@ import java.util.ArrayList;
  *
  * @author andre
  */
-public class Admin {
-
-    private ArrayList<Usuarios> users;
+public class AdminAlbum {
+    private ArrayList<Album> albumes;
     private File archivo = null;
-
-    public Admin() {
+    
+    public ArrayList<Album> getSongs() {
+        return albumes;
     }
 
-    public ArrayList<Usuarios> getUsers() {
-        return users;
+    public void setAlbum(Album a) {
+        this.albumes.add(a);
     }
 
-    public void setUsers(ArrayList<Usuarios> users) {
-        this.users = users;
+    public AdminAlbum(String path) {
+        archivo = new File(path);
+    }
+
+    public ArrayList<Album> getAlbumes() {
+        return albumes;
+    }
+
+    public void setAlbumes(ArrayList<Album> albumes) {
+        this.albumes = albumes;
     }
 
     public File getArchivo() {
@@ -41,24 +49,20 @@ public class Admin {
         this.archivo = archivo;
     }
 
-    public void setUser(Usuarios u) {
-        this.users.add(u);
+    @Override
+    public String toString() {
+        return "AdminAlbum{" + "albumes=" + albumes + ", archivo=" + archivo + '}';
     }
-
-    public Admin(String path) {
-        archivo = new File(path);
-    }
-
     public void cargarArchivoBinario() {
         try {
-            users = new ArrayList();
-            Usuarios temp;
+            albumes = new ArrayList();
+            Album temp;
             if (archivo.exists()) {
                 FileInputStream entrada = new FileInputStream(archivo);
                 ObjectInputStream objeto = new ObjectInputStream(entrada);
                 try {
-                    while ((temp = (Usuarios) objeto.readObject()) != null) {
-                        users.add(temp);
+                    while ((temp = (Album) objeto.readObject()) != null) {
+                        albumes.add(temp);
                     }
                 } catch (EOFException ex) {
                 }
@@ -76,7 +80,7 @@ public class Admin {
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            for (Usuarios u : users) {
+            for (Album u : albumes) {
                 bw.writeObject(u);
             }
             bw.flush();

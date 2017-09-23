@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Playlist {
     private Usuarios user;
-    private ArrayList<Canciones> playlist;
+    private ArrayList<Canciones> playlist = new ArrayList();
 
     public Playlist(Usuarios user, ArrayList<Canciones> playlist) {
         this.user = user;

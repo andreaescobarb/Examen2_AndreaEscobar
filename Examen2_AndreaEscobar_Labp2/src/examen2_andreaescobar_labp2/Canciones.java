@@ -5,14 +5,17 @@
  */
 package examen2_andreaescobar_labp2;
 
+import java.io.Serializable;
+
 /**
  *
  * @author andre
  */
-public class Canciones {
+public class Canciones implements Serializable{
     private String nombre;
     private String artista;
     private int duracion;
+    private static final long SerialVersionUID = 777L;
 
     public Canciones(String nombre, String artista, int duracion) {
         this.nombre = nombre;

@@ -5,21 +5,34 @@
  */
 package examen2_andreaescobar_labp2;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author andre
  */
-public class Album {
+public class Album implements Serializable{
     private String nombre;
-    private ArrayList<Canciones> canciones;
+    private String artista;
+    private ArrayList<Canciones> canciones = new ArrayList();
+    private static final long SerialVersionUID = 777L;
 
-    public Album(String nombre, ArrayList<Canciones> canciones) {
+    public Album(String nombre, String artista, ArrayList<Canciones> canciones) {
         this.nombre = nombre;
+        this.artista = artista;
         this.canciones = canciones;
     }
 
+    public String getArtista() {
+        return artista;
+    }
+
+    public void setArtista(String artista) {
+        this.artista = artista;
+    }
+
+    
     public String getNombre() {
         return nombre;
     }
