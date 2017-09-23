@@ -6,12 +6,14 @@
 package examen2_andreaescobar_labp2;
 
 import java.io.Serializable;
+import javax.swing.JLabel;
 
 /**
  *
  * @author andre
  */
-public class Canciones implements Serializable{
+public class Canciones extends Thread implements Serializable {
+
     private String nombre;
     private String artista;
     private int duracion;
@@ -51,5 +53,7 @@ public class Canciones implements Serializable{
     public String toString() {
         return "nombre=" + nombre + ", artista=" + artista;
     }
-    
+
+
+
 }
